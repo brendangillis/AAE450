@@ -82,7 +82,8 @@ def main():
     rocketChoices = RocketChoices()
     
     # Initialize rocket configuration
-    configs = [Configuration([ [rocketChoices.starship, 1], [rocketChoices.F9Upper, 1]])]
+    configSLS   = Configuration([[rocketChoices.centaur, 1]])
+    configs     = [(Configuration([ [rocketChoices.starship, 1], [rocketChoices.F9Upper, 1]]))]
     configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.centaur, 1]]))
     configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.gem46, 2], [rocketChoices.centaur, 1]]))
     configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.gem46, 3], [rocketChoices.centaur, 1]]))
@@ -92,6 +93,8 @@ def main():
     
     print('\nROCKET CONFIGURATIONS:')
     print('  {:<36}  |  1 tons  |  2 tons  |  3 tons |'.format(' '))
+    print('  {:<40} {:,.0f},    {:,.0f},    {:,.0f}'.format('SLS + ' + configSLS.name, configSLS.total_dV(1)+4500, configSLS.total_dV(2)+4500, configSLS.total_dV(3)+4500))
+    
     for config in configs:
         print('  {:<40} {:,.0f},    {:,.0f},    {:,.0f}'.format(config.name, config.total_dV(1), config.total_dV(2), config.total_dV(3)))
     

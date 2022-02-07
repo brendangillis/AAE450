@@ -56,7 +56,7 @@ end
 favoredArch = favoredArch(1:numFavArch-1);
 
 % Plots Results
-fig = Plot_Pareto_Analysis(Pareto)
+Plot_Pareto_Analysis(Pareto);
 clear i j k favoredCost favoredScience
 
 %Calculates how much each decision influences the cost, science, and rel
@@ -86,13 +86,10 @@ t.Title.String = "Influence of Decisions on Pareto Values";
 
 t1 = nexttile;
 pie(t1, costEffects, explode);
-% t1.Title.String = "Cost";
 t2 = nexttile;
 p2 = pie(t2, scienceEffects, explode);
-% t2.Title.String = "Science";
 lgd = legend(labels);
 lgd.Location = 'south';
 lgd.Orientation = 'horizontal';
 t3 = nexttile;
 pie(t3, relEffects, explode);
-% title("Reliability");

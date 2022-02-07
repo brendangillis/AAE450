@@ -1,20 +1,20 @@
 function v_inf = getC3(propinfo)
 
 % inputs: Propinfo
-% propinfo.m_pay = Payload mass (kg)
-% propinfo.m_prop = Propellant mass (kg)
-% propinfo.m_in = inert mass (kg)
+% propinfo.mPay = Payload mass (kg)
+% propinfo.mProp = Propellant mass (kg)
+% propinfo.mInert = inert mass (kg)
 % propinfo.isp = Specific Impulse (seconds)
 
 % output: 
-% v_inf = Ending velocity of spacecraft after 
+% v_inf = Ending velocity of spacecraft after (km/s)
 
 g = 0.00981; % gravitational constant of earth (km/s^2)
 mu = 3.896 * 10^5; % Gravitational parameter of earth (km^3 / s^-2)
 r = 500 + 6378.1; % Radius of the earth plus the desired low earth orbit altitude (km)
 
-mi  = propinfo.m_pay + propinfo.m_in + propinfo.m_prop; % Initial mass calculation prior to burn maneuver (kg)
-mf = propinfo.m_in + propinfo.m_pay; % Final mass calculation after burn maneuver (kg)
+mi  = propinfo.mPay + propinfo.mInert + propinfo.mProp; % Initial mass calculation prior to burn maneuver (kg)
+mf = propinfo.mInert + propinfo.mPay; % Final mass calculation after burn maneuver (kg)
 
 dv = g * propinfo.isp * log(mi / mf); % Delta V calculation for candidate architecture
 

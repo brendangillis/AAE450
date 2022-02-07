@@ -19,7 +19,7 @@ end
 if (arch.Prop == "chem")
     reliability = reliability * .99;
 elseif (arch.Prop == "sail")
-    reliability = reliability * .8;
+    reliability = reliability * .99;
 elseif (arch.Prop == "elec")
     reliability = reliability * .998;
 elseif (arch.Prop == "nuc")
@@ -36,15 +36,15 @@ end
 % COM
 if (arch.Com == "laser")
     reliability = reliability * .99;
-elseif (arch.Com == "X")
-    reliability = reliability * .999;
 elseif (arch.Com == "Ka")
+    reliability = reliability * .999;
+elseif (arch.Com == "X")
     reliability = reliability * .996;
 end
 
 % SPIN
 if (arch.Spin == "no")
-    reliability = reliability * .999;
+    reliability = reliability * 0;
 elseif (arch.Spin == "yes")
     reliability = reliability * .99;
 elseif (arch.Spin == "both")

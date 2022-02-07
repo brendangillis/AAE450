@@ -4,7 +4,7 @@
 % Data analysis + visualization - Joseph Kirchhoff
 % 
 
-function Plot_Pareto_Analysis(options) 
+function fig = Plot_Pareto_Analysis(options) 
   %dev: Joseph Kirchhoff
   %implementation: pass a struct in the options field with cost, science,
   %reliability as '.cost', '.science', '.reliability' and then a struct
@@ -36,7 +36,6 @@ function Plot_Pareto_Analysis(options)
 
     maxCost = max(options.cost);
     maxScience = max(options.science);
-    maxReliability = max(options.reliability);
 
     stdCost = std(options.cost);
     stdScience = std(options.science);    
@@ -51,23 +50,23 @@ function Plot_Pareto_Analysis(options)
     set(gca,'FontSize',nFont);
     hold on;
 
-%     c = linspace(1,1,length(options.cost))'.*(options.science/maxReliability + options.science/maxScience);
-    s = scatter(options.cost, options.science, 'b');%,[], c);  
+    c = linspace(1,1,length(options.cost))'.*(options.cost/maxCost + options.science/maxScience);
+    s = scatter(options.cost, options.science);  
     set(gca,'TickLabelInterpreter','latex')
-    xlabel('Reliability','interpreter','latex')
+    xlabel('Cost','interpreter','latex')
     ylabel('Science','interpreter','latex')
-    title ('Science | Reliability Pareto Analysis')
+    title ('Science | Cost Pareto Analysis')
     grid on;
 
-%     ax = gca;
-%     outerpos = ax.OuterPosition;
-%     ti = ax.TightInset; 
-%     left = outerpos(1) + ti(1);
-%     bottom = outerpos(2) + ti(2);
-%     ax_width = outerpos(3) - ti(1) - ti(3);
-%     ax_height = outerpos(4) - ti(2) - ti(4);
-%     ax.Position = [left bottom ax_width ax_height];
-%     fig = gcf;
+    ax = gca;
+    outerpos = ax.OuterPosition;
+    ti = ax.TightInset; 
+    left = outerpos(1) + ti(1);
+    bottom = outerpos(2) + ti(2);
+    ax_width = outerpos(3) - ti(1) - ti(3);
+    ax_height = outerpos(4) - ti(2) - ti(4);
+    ax.Position = [left bottom ax_width ax_height];
+    fig = gcf;
 % 
 %     print(fig,[p_dir_figures 'Cost_Science'],'-depsc')
 %     print(fig,[p_dir_figures 'Cost_Science'],'-dpng')  
@@ -76,66 +75,37 @@ function Plot_Pareto_Analysis(options)
 
     %Narrow in on designs within two standard devs of the max for each 
 
-%     figure (2);
-%     options.filteredCost = options.cost( (options.cost >= maxCost-stdCost) & (options.science >= maxScience-stdScience) );
-%     options.filteredScience = options.science( (options.cost >= maxCost-stdCost) & (options.science >= maxScience-stdScience) );
-% 
-%     set(gcf,'color','w');
-%     set(gcf, 'Units', 'Normalized', 'OuterPosition',  [0, 0.04, 0.65, 1]);
-%     %plot(temp,time,'k','LineWidth',lw*4,'LineStyle','-')
-%     set(gca,'FontSize',nFont);
-%     hold on;
-% 
-%     c = linspace(1,1,length(options.filteredCost))'.*(options.filteredCost/maxCost + options.filteredScience/maxScience);
-%     s = scatter(options.filteredCost, options.filteredScience,[], c);  
-%     set(gca,'TickLabelInterpreter','latex')
-%     xlabel('Cost','interpreter','latex')
-%     ylabel('Science','interpreter','latex')
-%     title ('Filtered Science | Cost Pareto Analysis')
-%     grid on;
-% 
-%     ax = gca;
-%     outerpos = ax.OuterPosition;
-%     ti = ax.TightInset; 
-%     left = outerpos(1) + ti(1);
-%     bottom = outerpos(2) + ti(2);
-%     ax_width = outerpos(3) - ti(1) - ti(3);
-%     ax_height = outerpos(4) - ti(2) - ti(4);
-%     ax.Position = [left bottom ax_width ax_height];
-%     fig = gcf;
-% 
-%     hold off;
-
-    figure (3);
+    figure (2);
+    options.filteredCost = options.cost( (options.cost >= maxCost-stdCost) & (options.science >= maxScience-stdScience) );
+    options.filteredScience = options.science( (options.cost >= maxCost-stdCost) & (options.science >= maxScience-stdScience) );
 
     set(gcf,'color','w');
-%     set(gcf, 'Units', 'Normalized', 'OuterPosition',  [0, 0.04, 0.65, 1]);
+    set(gcf, 'Units', 'Normalized', 'OuterPosition',  [0, 0.04, 0.65, 1]);
     %plot(temp,time,'k','LineWidth',lw*4,'LineStyle','-')
     set(gca,'FontSize',nFont);
     hold on;
 
-%     c = linspace(1,1,length(options.cost))'.*(options.reliability/maxReliability + options.science/maxScience);
-    s = scatter(options.reliability, options.science, 'b');%,[], c);  
+    c = linspace(1,1,length(options.filteredCost))'.*(options.filteredCost/maxCost + options.filteredScience/maxScience);
+    s = scatter(options.filteredCost, options.filteredScience);  
     set(gca,'TickLabelInterpreter','latex')
-    xlabel('Reliability','interpreter','latex')
+    xlabel('Cost','interpreter','latex')
     ylabel('Science','interpreter','latex')
-    title ('Science | Reliability Pareto Analysis')
+    title ('Science | Cost Pareto Analysis')
     grid on;
 
-%     ax = gca;
-%     outerpos = ax.OuterPosition;
-%     ti = ax.TightInset; 
-%     left = outerpos(1) + ti(1);
-%     bottom = outerpos(2) + ti(2);
-%     ax_width = outerpos(3) - ti(1) - ti(3);
-%     ax_height = outerpos(4) - ti(2) - ti(4);
-%     ax.Position = [left bottom ax_width ax_height];
-%     fig = gcf;
-% 
-%     print(fig,[p_dir_figures 'Cost_Science'],'-depsc')
-%     print(fig,[p_dir_figures 'Cost_Science'],'-dpng')  
+    ax = gca;
+    outerpos = ax.OuterPosition;
+    ti = ax.TightInset; 
+    left = outerpos(1) + ti(1);
+    bottom = outerpos(2) + ti(2);
+    ax_width = outerpos(3) - ti(1) - ti(3);
+    ax_height = outerpos(4) - ti(2) - ti(4);
+    ax.Position = [left bottom ax_width ax_height];
+    fig = gcf;
 
     hold off;
+
+
 
 
 end

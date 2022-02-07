@@ -4,14 +4,14 @@
 % Assigns the reliability scores to each architecture
 
 function reliability = getReliability(arch)
-reliability = 0;
+reliability = 1;
 
 %STAGING
-if (arch.Stage == "none")
+if (arch.Staging == "none")
     reliability = reliability * 1;
-elseif (arch.Stage == "single")
+elseif (arch.Staging == "single")
     reliability = reliability * .99;
-elseif (arch.Stage == "mult")
+elseif (arch.Staging == "mult")
     reliability = reliability * .98;
 end
 

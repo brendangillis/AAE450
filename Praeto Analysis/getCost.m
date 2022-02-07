@@ -7,11 +7,11 @@ function cost = getCost(arch)
 cost = 0;
 
 %STAGING
-if (arch.Stage == "none")
+if (arch.Staging == "none")
     cost = cost + 20;
-elseif (arch.Stage == "single")
+elseif (arch.Staging == "single")
     cost = cost + 0;
-elseif (arch.Stage == "mult")
+elseif (arch.Staging == "mult")
     cost = cost - 40;
 end
 

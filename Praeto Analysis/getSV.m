@@ -1,3 +1,6 @@
+% Author: Aman Chokshi
+% Generates the science values for given combinations
+
 function SV = getSV(combinations)
 
 SV = zeros(size(combinations,1),1); %Initialize Science Value

@@ -85,5 +85,5 @@ elseif (arch.Payload == "max")
     cost = cost + 112.05;
 end
 
-cost = cost / 1000;
+cost = cost;
 end

@@ -53,7 +53,7 @@ function fig = Plot_Pareto_Analysis(options)
     c = linspace(1,1,length(options.cost))'.*(options.cost/maxCost + options.science/maxScience);
     s = scatter(options.cost, options.science);  
     set(gca,'TickLabelInterpreter','latex')
-    xlabel('Cost','interpreter','latex')
+    xlabel('Cost (Millions of Dollars)','interpreter','latex')
     ylabel('Science','interpreter','latex')
     title ('Science | Cost Pareto Analysis')
     grid on;
@@ -88,7 +88,7 @@ function fig = Plot_Pareto_Analysis(options)
     c = linspace(1,1,length(options.filteredCost))'.*(options.filteredCost/maxCost + options.filteredScience/maxScience);
     s = scatter(options.filteredCost, options.filteredScience);  
     set(gca,'TickLabelInterpreter','latex')
-    xlabel('Cost','interpreter','latex')
+    xlabel('Cost ($M)','interpreter','latex')
     ylabel('Science','interpreter','latex')
     title ('Science | Cost Pareto Analysis')
     grid on;

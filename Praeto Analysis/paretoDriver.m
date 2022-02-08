@@ -28,24 +28,16 @@ end
 Pareto = struct("cost",costs,"reliability",rels,"science",SVs);
 
 %Determined best combinations
-% favoredCost = find(Pareto.cost >=0.2);
-% favoredScience = find(Pareto.science > 4200);
-% k = 1;
-% for j = 1:size(favoredCost,1)
-%     if ismember(favoredCost(j),favoredScience) > 0
-%         favoredData(k) = favoredCost(j);
-%         k = k+1;
-%     end
-% end
-
-minFavCost = .2;
-minFavScience = 4300;
-minFavReliability = .88;
+maxFavCost = -50;
+minFavScience = .38;
+% maxFavScience = .4; %Purely for trying to isolate specific architectures. Doesn't factor into pareto
+minFavReliability = .9;
 
 favoredArch(1:length(combinations)) = struct('arch', [], 'cost', 0, 'science', 0, 'reliability', 0);
 numFavArch = 1;
 for j = 1:length(archs)
-    if (archs(j).cost > minFavCost && archs(j).science > minFavScience && archs(j).reliability > minFavReliability)
+    if (archs(j).cost < maxFavCost && archs(j).science > minFavScience && archs(j).reliability > minFavReliability)
+%     if (archs(j).cost < maxFavCost && archs(j).science > minFavScience && archs(j).reliability > minFavReliability && archs(j).science < maxFavScience)
         favoredArch(numFavArch).arch = archs(j).arch;
         favoredArch(numFavArch).cost = archs(j).cost;
         favoredArch(numFavArch).science = archs(j).science;

@@ -42,7 +42,7 @@ function Plot_Pareto_Analysis(options)
     stdScience = std(options.science);    
 
     %Plots with all of the data (just to show design decisions) 
-
+    clf(1);
     figure (1);
 
     set(gcf,'color','w');
@@ -106,6 +106,7 @@ function Plot_Pareto_Analysis(options)
 % 
 %     hold off;
 
+    clf(3);
     figure (3);
 
     set(gcf,'color','w');
@@ -115,7 +116,7 @@ function Plot_Pareto_Analysis(options)
     hold on;
 
     c = linspace(1,1,length(options.cost))'.*(options.reliability/maxReliability + options.science/maxScience);
-    s = scatter(options.reliability, options.science, 'b');%,[], c);  
+    s = scatter(options.reliability, options.science);%,[], c);  
     set(gca,'TickLabelInterpreter','latex')
     xlabel('Reliability','interpreter','latex')
     xlabel('Reliability','interpreter','latex')

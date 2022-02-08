@@ -11,7 +11,7 @@ function Plot_Pareto_Analysis(options)
   %variable to trace the design decisions
 
   %Formating stuff
-  nFont=28;     %Font Size
+  nFont=18;     %Font Size
   ms=12;        %Marker Size
   lw=1.5;         %Line Width
   Folder = pwd; 
@@ -54,11 +54,7 @@ function Plot_Pareto_Analysis(options)
     c = linspace(1,1,length(options.cost))'.*(options.cost/maxCost + options.science/maxScience);
     s = scatter(options.cost, options.science);  
     set(gca,'TickLabelInterpreter','latex')
-<<<<<<< HEAD
-    xlabel('Cost (Millions of Dollars)','interpreter','latex')
-=======
     xlabel('Relative Cost (Millions of Dollars)','interpreter','latex')
->>>>>>> 562cfb74dfe275b08b3c943e0880ea5db41f3d0d
     ylabel('Science','interpreter','latex')
     title ('Science | Cost Pareto Analysis')
     grid on;
@@ -113,19 +109,16 @@ function Plot_Pareto_Analysis(options)
     figure (3);
 
     set(gcf,'color','w');
-%     set(gcf, 'Units', 'Normalized', 'OuterPosition',  [0, 0.04, 0.65, 1]);
+    set(gcf, 'Units', 'Normalized', 'OuterPosition',  [0, 0.04, 0.65, 1]);
     %plot(temp,time,'k','LineWidth',lw*4,'LineStyle','-')
     set(gca,'FontSize',nFont);
     hold on;
 
-%     c = linspace(1,1,length(options.cost))'.*(options.reliability/maxReliability + options.science/maxScience);
+    c = linspace(1,1,length(options.cost))'.*(options.reliability/maxReliability + options.science/maxScience);
     s = scatter(options.reliability, options.science, 'b');%,[], c);  
     set(gca,'TickLabelInterpreter','latex')
-<<<<<<< HEAD
     xlabel('Reliability','interpreter','latex')
-=======
-    xlabel('Cost ($M)','interpreter','latex')
->>>>>>> 562cfb74dfe275b08b3c943e0880ea5db41f3d0d
+    xlabel('Reliability','interpreter','latex')
     ylabel('Science','interpreter','latex')
     title ('Science | Reliability Pareto Analysis')
     grid on;
@@ -144,6 +137,4 @@ function Plot_Pareto_Analysis(options)
 %     print(fig,[p_dir_figures 'Cost_Science'],'-dpng')  
 
     hold off;
-
-
 end

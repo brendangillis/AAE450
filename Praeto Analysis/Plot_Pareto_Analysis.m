@@ -54,7 +54,11 @@ function Plot_Pareto_Analysis(options)
     c = linspace(1,1,length(options.cost))'.*(options.cost/maxCost + options.science/maxScience);
     s = scatter(options.cost, options.science);  
     set(gca,'TickLabelInterpreter','latex')
+<<<<<<< HEAD
     xlabel('Cost (Millions of Dollars)','interpreter','latex')
+=======
+    xlabel('Relative Cost (Millions of Dollars)','interpreter','latex')
+>>>>>>> 562cfb74dfe275b08b3c943e0880ea5db41f3d0d
     ylabel('Science','interpreter','latex')
     title ('Science | Cost Pareto Analysis')
     grid on;
@@ -117,7 +121,11 @@ function Plot_Pareto_Analysis(options)
 %     c = linspace(1,1,length(options.cost))'.*(options.reliability/maxReliability + options.science/maxScience);
     s = scatter(options.reliability, options.science, 'b');%,[], c);  
     set(gca,'TickLabelInterpreter','latex')
+<<<<<<< HEAD
     xlabel('Reliability','interpreter','latex')
+=======
+    xlabel('Cost ($M)','interpreter','latex')
+>>>>>>> 562cfb74dfe275b08b3c943e0880ea5db41f3d0d
     ylabel('Science','interpreter','latex')
     title ('Science | Reliability Pareto Analysis')
     grid on;

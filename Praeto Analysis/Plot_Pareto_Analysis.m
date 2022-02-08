@@ -53,7 +53,7 @@ function fig = Plot_Pareto_Analysis(options)
     c = linspace(1,1,length(options.cost))'.*(options.cost/maxCost + options.science/maxScience);
     s = scatter(options.cost, options.science);  
     set(gca,'TickLabelInterpreter','latex')
-    xlabel('Cost (Millions of Dollars)','interpreter','latex')
+    xlabel('Relative Cost (Millions of Dollars)','interpreter','latex')
     ylabel('Science','interpreter','latex')
     title ('Science | Cost Pareto Analysis')
     grid on;

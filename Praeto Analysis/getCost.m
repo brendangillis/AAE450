@@ -19,25 +19,23 @@ end
 if (arch.Prop == "chem")
     cost = cost + 0;
 elseif (arch.Prop == "sail")
-%     cost = cost - 145;
-   cost = cost + 1.5;
+   cost = cost - -6.69742095;
 elseif (arch.Prop == "elec")
-    cost = cost + 1.5;
+    cost = cost + 28.014;
 elseif (arch.Prop == "nuc")
-%     cost = cost - 595;
-    cost = cost - 5.95;
+    cost = cost + 11.986;
 end
 
 % GRAVITY
 if (arch.Gravity == "none")
-    cost = cost - 100;
+    cost = cost + 0;
 elseif (arch.Gravity == "jupiter")
     cost = cost + 1.6;
 end
 
 % COM
 if (arch.Com == "laser")
-    cost = cost - 10;
+    cost = cost + 30;
 elseif (arch.Com == "Ka")
     cost = cost + 0;
 elseif (arch.Com == "X")
@@ -67,22 +65,22 @@ end
 % POWER
 if (arch.Power == "solar")
 %     cost = cost+ 1;
-      cost = cost - 10;
+      cost = cost + 0;
 elseif (arch.Power == "nuc")
 %     cost = cost - 65;
-      cost = cost + 2;
+      cost = cost - 610;
 elseif (arch.Power == "both")
 %     cost = cost - 65.0175;
-     cost = cost - 12;
+     cost = cost + 140;
 end
 
 % PAYLOAD
 if (arch.Payload == "all")
     cost = cost + 0;
 elseif (arch.Payload == "partial")
-    cost = cost + 43.61;
+    cost = cost - 64.608;
 elseif (arch.Payload == "max")
-    cost = cost + 112.05;
+    cost = cost - 150.173;
 end
 
 cost = cost;

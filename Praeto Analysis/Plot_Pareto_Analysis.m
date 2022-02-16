@@ -42,7 +42,7 @@ function Plot_Pareto_Analysis(options)
     stdScience = std(options.science);    
 
     %Plots with all of the data (just to show design decisions) 
-    clf(1);
+%     clf(1);
     figure (1);
 
     set(gcf,'color','w');
@@ -106,7 +106,7 @@ function Plot_Pareto_Analysis(options)
 % 
 %     hold off;
 
-    clf(3);
+%     clf(3);
     figure (3);
 
     set(gcf,'color','w');

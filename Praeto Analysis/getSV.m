@@ -35,7 +35,7 @@ timeTo120 = timeToHP(combinations,propInfo,120);
         SV = (returnRate/totalAcquisition)*(payloads.MAG(2)*payloads.MAG(3)*(DL-timeTo120)/DL+payloads.PLS(2)*payloads.PLS(3)*(DL-timeTo120)/DL+payloads.PUI(2)*payloads.PUI(3)*(DL-timeTo120)/DL+payloads.EPS(2)*payloads.EPS(3)*(DL-timeTo120)/DL+payloads.CRS(2)*payloads.CRS(3)*(DL-timeTo120)/DL+payloads.PWS(2)*payloads.PWS(3)*(DL-timeTo120)/DL+payloads.IDA(2)*payloads.IDA(3)*(DL-timeTo120)/DL+payloads.NMS(2)*payloads.NMS(3)*(DL-timeTo120)/DL);
     elseif combinations.Payload == "max"
 %         totalAcquisition = 5006; %Data Acquisition Rate with partial descoping of ENA, LYA, IDA, PWS, EPS due to weight and objective overlap [bps]
- totalAcquisition = 7406; %Data Acquisition Rate of all Payloads [bps]        
+         totalAcquisition = 7406; %Data Acquisition Rate of all Payloads [bps]        
 %Determines Science Value for combination
         SV = (returnRate/totalAcquisition)*(payloads.MAG(2)*payloads.MAG(3)*(DL-timeTo120)/DL+payloads.PLS(2)*payloads.PLS(3)*(DL-timeTo120)/DL+payloads.PUI(2)*payloads.PUI(3)*(DL-timeTo120)/DL+payloads.CRS(2)*payloads.CRS(3)*(DL-timeTo120)/DL+payloads.NMS(2)*payloads.NMS(3)*(DL-timeTo120)/DL);
     end

@@ -1,9 +1,16 @@
 function tHP = timeToHP(candidateArchitecture, propinfo, distance)
     Vinf = getC3(propinfo);
+
+   if candidateArchitecture.Staging == "single"
+        Vinf = Vinf + 8;
+   elseif candidateArchitecture.Staging == "mult"
+       Vinf = Vinf+10;
+   end
+
     jupiter_dist = 588000000;
     desire_dist = distance*1.496e8;
     arrivalFPA = 10; %ArrivalFPA in degrees
-    if(candidateArchitecture.Prop == "chem" && candidateArchitecture.Gravity == "none")
+       if(candidateArchitecture.Prop == "chem" && candidateArchitecture.Gravity == "none")
         tHP = 1/(Vinf/desire_dist);
     elseif(candidateArchitecture.Prop == "chem" && candidateArchitecture.Gravity == "jupiter")
         vChem = 10;%Estimation based on Falcon second stage Upper stage
@@ -46,7 +53,4 @@ function tHP = timeToHP(candidateArchitecture, propinfo, distance)
 
      tHP = tHP/3.154e+7; %Time to Heliopause [years]
 end
-        
-        
-        
-        
+         

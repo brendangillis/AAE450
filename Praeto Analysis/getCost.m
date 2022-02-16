@@ -8,20 +8,20 @@ cost = 0;
 
 %STAGING
 if (arch.Staging == "none")
-    cost = cost + 20;
+    cost = cost - 7.5;
 elseif (arch.Staging == "single")
     cost = cost + 0;
 elseif (arch.Staging == "mult")
-    cost = cost - 40;
+    cost = cost + 7.5;
 end
 
 % PROPULSION
 if (arch.Prop == "chem")
     cost = cost + 0;
 elseif (arch.Prop == "sail")
-   cost = cost - -6.69742095;
+   cost = cost - 6.69742095;
 elseif (arch.Prop == "elec")
-    cost = cost + 28.014;
+    cost = cost - 14;
 elseif (arch.Prop == "nuc")
     cost = cost + 11.986;
 end
@@ -30,7 +30,7 @@ end
 if (arch.Gravity == "none")
     cost = cost + 0;
 elseif (arch.Gravity == "jupiter")
-    cost = cost + 1.6;
+    cost = cost -.515;
 end
 
 % COM
@@ -68,7 +68,7 @@ if (arch.Power == "solar")
       cost = cost + 0;
 elseif (arch.Power == "nuc")
 %     cost = cost - 65;
-      cost = cost - 610;
+      cost = cost - 235;
 elseif (arch.Power == "both")
 %     cost = cost - 65.0175;
      cost = cost + 140;

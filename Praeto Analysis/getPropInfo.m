@@ -1,14 +1,14 @@
 % Author: Aman Chokshi
 % Generates the propulsion information needed for Pareto Analysis
 function propInfo = getPropInfo(combinations)
-% Using nasa calcs from C3 for DV with all but starship which is handcalculated using published data for refueled version
+% No real data on SLS yet, so had to assume 10% better than Delta IV
 propInfo(size(combinations,1),1) = struct("dV",[],"mPay",[],"mInert",[],"mProp",[], "isp",[]);
 
 for i = 1:size(combinations,1)
     if combinations(i).LV == "star"
         propInfo(i).dV = 11.2+11.4; % Starship dV [km/s]
         propInfo(i).isp = 380; %Isp [sec]
-        propInfo(i).mProp = 1200000; %Propellant mass [kg]
+        propInfo(i).mProp = 3583379.723; %Propellant mass [kg]
     elseif combinations(i).LV == "sls"
         propInfo(i).dV = 11.2+10; % SLS dV [km/s]
         propInfo(i).isp = 453; %Isp [sec]

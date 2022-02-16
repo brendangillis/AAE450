@@ -6,7 +6,7 @@ function tHP = timeToHP(candidateArchitecture, propinfo, distance)
     if(candidateArchitecture.Prop == "chem" && candidateArchitecture.Gravity == "none")
         tHP = 1/(Vinf/desire_dist);
     elseif(candidateArchitecture.Prop == "chem" && candidateArchitecture.Gravity == "jupiter")
-        vChem = 5;%Estimation based on Falcon second stage Upper stage
+        vChem = 10;%Estimation based on Falcon second stage Upper stage
         tJ = 1/(Vinf/jupiter_dist);
         arrivalV = Vinf + vChem;
         vAfter = gravityAssist(candidateArchitecture.Gravity, arrivalFPA, arrivalV);
@@ -23,10 +23,10 @@ function tHP = timeToHP(candidateArchitecture, propinfo, distance)
         tAfter = 1/(vAfter/desire_dist);
         tHP = tJ + tAfter;
     elseif(candidateArchitecture.Prop == "elec" && candidateArchitecture.Gravity == "none")
-        vElec = 11.5; %Estimation based on Dawn spacecraft (From Wikipedia)
+        vElec = 13; %Estimation based on Dawn spacecraft (From Wikipedia) +more prop
         tHP = 1/(vElec/desire_dist);
     elseif(candidateArchitecture.Prop == "elec" && candidateArchitecture.Gravity == "jupiter")
-        vElec = 11.5; %Estimation based on Dawn spacecraft (From Wikipedia)
+        vElec = 13; %Estimation based on Dawn spacecraft (From Wikipedia) +more prop
         tJ = 1/(vElec/jupiter_dist);
         arrivalV = Vinf + vElec;
         vAfter = gravityAssist(candidateArchitecture.Gravity, arrivalFPA, arrivalV);

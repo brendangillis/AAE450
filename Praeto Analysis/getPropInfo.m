@@ -19,7 +19,7 @@ for i = 1:size(combinations,1)
     elseif combinations(i).LV == "div"
         propInfo(i).dV = 11.2+8.9; %Delta IV dV [km/s]
         propInfo(i).isp = 435; %Isp [sec]
-        propInfo(i).mProp. = 200400+27220+200400*2; %Propellant mass [kg]
+        propInfo(i).mProp = 200400+27220+200400*2; %Propellant mass [kg]
         propInfo(i).c3 = 80; % km^2/s^2    - No kick stages
     elseif combinations(i).LV == "falcon"
         propInfo(i).dV = 11.2+8.9; %Falcon Heavy dV [km/s]

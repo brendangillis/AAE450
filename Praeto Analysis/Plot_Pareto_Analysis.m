@@ -1,10 +1,4 @@
-% AAE 450 Team 3
-% 2-6-2022
-% Script developed by:
-% Data analysis + visualization - Joseph Kirchhoff
-% 
-
-function Plot_Pareto_Analysis(options) 
+function Plot_Pareto_Analysis(options, combinations) 
   %dev: Joseph Kirchhoff
   %implementation: pass a struct in the options field with cost, science,
   %reliability as '.cost', '.science', '.reliability' and then a struct
@@ -42,18 +36,18 @@ function Plot_Pareto_Analysis(options)
     stdScience = std(options.science);    
 
     %Plots with all of the data (just to show design decisions) 
-%     clf(1);
+%    clf(1);
     figure (1);
 
-    set(gcf,'color','w');
-    set(gcf, 'Units', 'Normalized', 'OuterPosition',  [0, 0.04, 0.65, 1]);
-    %plot(temp,time,'k','LineWidth',lw*4,'LineStyle','-')
-    set(gca,'FontSize',nFont);
+%     set(gcf,'color','w');
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition',  [0, 0.04, 0.65, 1]);
+%     %plot(temp,time,'k','LineWidth',lw*4,'LineStyle','-')
+%     set(gca,'FontSize',nFont);
     hold on;
     
     c = linspace(1,1,length(options.cost))'.*(options.cost/maxCost + options.science/maxScience);
     s = scatter(options.cost, options.science);  
-    set(gca,'TickLabelInterpreter','latex')
+%     set(gca,'TickLabelInterpreter','latex')
     xlabel('Relative Cost (Millions of Dollars)','interpreter','latex')
     ylabel('Science','interpreter','latex')
     title ('Science | Cost Pareto Analysis')
@@ -106,19 +100,18 @@ function Plot_Pareto_Analysis(options)
 % 
 %     hold off;
 
-%     clf(3);
+ %   clf(3);
     figure (3);
 
-    set(gcf,'color','w');
-    set(gcf, 'Units', 'Normalized', 'OuterPosition',  [0, 0.04, 0.65, 1]);
-    %plot(temp,time,'k','LineWidth',lw*4,'LineStyle','-')
-    set(gca,'FontSize',nFont);
+%     set(gcf,'color','w');
+%     set(gcf, 'Units', 'Normalized', 'OuterPosition',  [0, 0.04, 0.65, 1]);
+%     %plot(temp,time,'k','LineWidth',lw*4,'LineStyle','-')
+%     set(gca,'FontSize',nFont);
     hold on;
 
     c = linspace(1,1,length(options.cost))'.*(options.reliability/maxReliability + options.science/maxScience);
     s = scatter(options.reliability, options.science);%,[], c);  
     set(gca,'TickLabelInterpreter','latex')
-    xlabel('Reliability','interpreter','latex')
     xlabel('Reliability','interpreter','latex')
     ylabel('Science','interpreter','latex')
     title ('Science | Reliability Pareto Analysis')
@@ -138,4 +131,40 @@ function Plot_Pareto_Analysis(options)
 %     print(fig,[p_dir_figures 'Cost_Science'],'-dpng')  
 
     hold off;
+    
+    
+    % Create plots with each of the different architecture differences
+    % ex: the power sources
+    
+    fn = fieldnames(combinations);
+    c = struct2table (combinations);
+    color_list = {'r','c','k','b','r','g','m','c','k'};
+    
+for k=1:numel(fn)
+    
+    figure(3+k)
+    
+    [G, ID] = findgroups(c(:,k))
+    leg = [];
+ 
+    for l = 1:length(unique(G))
+ 
+        s = scatter(options.cost(G==l), options.science(G==l), 'filled',color_list{l});%,[], c); 
+        leg = [leg ID{l,1}];
+       
+    hold on;
+        
+    end
+    leg
+    legend(leg)
+    set(gca,'TickLabelInterpreter','latex')
+    xlabel('Cost','interpreter','latex')
+    ylabel('Science','interpreter','latex')
+    title (strcat('Science | Cost Pareto Analysis: ',fn(k)))
+    grid on;
+    
+end
+    
+    
+    
 end

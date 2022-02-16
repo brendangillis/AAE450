@@ -28,10 +28,12 @@ for l = 1:length(tHP10)
     SV(tHP10(l)) = 0;
 end
 
+
+
 Pareto = struct("cost",cost,"reliability",rel,"science",SV);
 
 
-% %Determined best combinations
+% %Determined best combinations. Change bounds based on what is desired.
  favoredCost = find(Pareto.cost >=390);
  favoredScience = find(Pareto.science > .375);
 k = 1;
@@ -44,5 +46,5 @@ end
 favoredCombinationsBot = combinations(favoredindices);
 
 % Plots Results
-Plot_Pareto_Analysis(Pareto);
+Plot_Pareto_Analysis(Pareto, combinations);
 clear i j k favoredCost favoredScience

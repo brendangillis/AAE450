@@ -13,7 +13,7 @@ function tHP = timeToHP(candidateArchitecture, propinfo, distance)
        if(candidateArchitecture.Prop == "chem" && candidateArchitecture.Gravity == "none")
         tHP = 1/(Vinf/desire_dist);
     elseif(candidateArchitecture.Prop == "chem" && candidateArchitecture.Gravity == "jupiter")
-        vChem = 10;%Estimation based on Falcon second stage Upper stage
+        vChem = 3;%Estimation based R-4D
         tJ = 1/(Vinf/jupiter_dist);
         arrivalV = Vinf + vChem;
         vAfter = gravityAssist(candidateArchitecture.Gravity, arrivalFPA, arrivalV);

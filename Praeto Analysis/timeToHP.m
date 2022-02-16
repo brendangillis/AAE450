@@ -20,10 +20,10 @@ function tHP = timeToHP(candidateArchitecture, propinfo, distance)
         tAfter = 1/(vAfter/desire_dist);
         tHP = tJ + tAfter;
     elseif(candidateArchitecture.Prop == "sail" && candidateArchitecture.Gravity == "none")
-        vSail = 70; %Estimation based on "Penn State GPL Paper"
+        vSail = 14; %Estimation based on "Penn State GPL Paper"
         tHP = 1/(vSail/desire_dist);
     elseif(candidateArchitecture.Prop == "sail" && candidateArchitecture.Gravity == "jupiter")
-        vSail = 70; %Estimation based on "Penn State GPL Paper"
+        vSail = 14; %Estimation based on "Penn State GPL Paper"
         tJ = 1/((vSail/4)/jupiter_dist);
         arrivalV = Vinf + vSail/4;
         vAfter = gravityAssist(candidateArchitecture.Gravity, arrivalFPA, arrivalV);

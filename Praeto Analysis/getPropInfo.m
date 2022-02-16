@@ -15,6 +15,7 @@ for i = 1:size(combinations,1)
         propInfo(i).dV = 11.2+10; % SLS dV [km/s]
         propInfo(i).isp = 453; %Isp [sec]
         propInfo(i).c3 = 90; % km^2/s^2
+        propInfo(i).mProp = 987470.5895;
     elseif combinations(i).LV == "div"
         propInfo(i).dV = 11.2+8.9; %Delta IV dV [km/s]
         propInfo(i).isp = 435; %Isp [sec]

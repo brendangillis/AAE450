@@ -8,7 +8,7 @@ for i = 1:size(combinations,1)
     if combinations(i).LV == "star"
         propInfo(i).dV = 11.2+11.4; % Starship dV [km/s]
         propInfo(i).isp = 380; %Isp [sec]
-        propInfo(i).mProp = 3583379.723; %Propellant mass [kg]
+        propInfo(i).mProp = 1200000; %Propellant mass [kg]
     elseif combinations(i).LV == "sls"
         propInfo(i).dV = 11.2+10; % SLS dV [km/s]
         propInfo(i).isp = 453; %Isp [sec]

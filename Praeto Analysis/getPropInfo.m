@@ -19,12 +19,12 @@ for i = 1:size(combinations,1)
         propInfo(i).dV = 11.2+8.9; %Delta IV dV [km/s]
         propInfo(i).isp = 435; %Isp [sec]
         propInfo(i)c3 = 130; % km^2/s^2
-        propInfo(i)c3 = 80; % km^2/s^2
+        propInfo(i)c3 = 80; % km^2/s^2    - No kick stages
     elseif combinations(i).LV == "falcon"
         propInfo(i).dV = 11.2+8.9; %Falcon Heavy dV [km/s]
         propInfo(i).isp = 363; %Isp [sec]
         propInfo(i).mProp = 395700 + 92670; %Propellant mass [kg]
-        propInfo(i)c3 = 80; % km^2/s^2
+        propInfo(i)c3 = 80; % km^2/s^2   - No kick stages
     end
 
     % 2x payload mass multiplier to account of unforeseen hardware and masses

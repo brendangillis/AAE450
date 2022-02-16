@@ -2,25 +2,29 @@
 % Generates the propulsion information needed for Pareto Analysis
 function propInfo = getPropInfo(combinations)
 % No real data on SLS yet, so had to assume 10% better than Delta IV
+% C3 values from starship used exiosting data with extra features removed. Rest values for C3 from NASA
 propInfo(size(combinations,1),1) = struct("dV",[],"mPay",[],"mInert",[],"mProp",[], "isp",[]);
 
 for i = 1:size(combinations,1)
     if combinations(i).LV == "star"
         propInfo(i).dV = 11.2+11.4; % Starship dV [km/s]
         propInfo(i).isp = 380; %Isp [sec]
-        propInfo(i).mProp = 3583379.723; %Propellant mass [kg]
+        propInfo(i).mProp = 1200000; %Propellant mass [kg]
+        propInfo(i)c3 = 97; % km^2/s^2
     elseif combinations(i).LV == "sls"
         propInfo(i).dV = 11.2+10; % SLS dV [km/s]
         propInfo(i).isp = 453; %Isp [sec]
-        propInfo(i).mProp = 987470.5895; %Propellant mass [kg]
+        propInfo(i)c3 = 45; % km^2/s^2
     elseif combinations(i).LV == "div"
         propInfo(i).dV = 11.2+8.9; %Delta IV dV [km/s]
         propInfo(i).isp = 435; %Isp [sec]
-        propInfo(i).mProp = 200400+27220+200400*2; %Propellant mass [kg]
+        propInfo(i)c3 = 130; % km^2/s^2
+        propInfo(i)c3 = 80; % km^2/s^2
     elseif combinations(i).LV == "falcon"
         propInfo(i).dV = 11.2+8.9; %Falcon Heavy dV [km/s]
         propInfo(i).isp = 363; %Isp [sec]
         propInfo(i).mProp = 395700 + 92670; %Propellant mass [kg]
+        propInfo(i)c3 = 80; % km^2/s^2
     end
 
     % 2x payload mass multiplier to account of unforeseen hardware and masses

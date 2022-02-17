@@ -90,7 +90,9 @@ def main():
     configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 2], [rocketChoices.centaur, 1]]))
     configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 3], [rocketChoices.centaur, 1]]))
     configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 4], [rocketChoices.centaur, 1]]))
-    
+    configs.append(Configuration([[rocketChoices.starship, 1]]))
+
+
     print('\nROCKET CONFIGURATIONS:')
     print('  {:<36}  |  1 tons  |  2 tons  |  3 tons |'.format(' '))
     print('  {:<40} {:,.0f},    {:,.0f},    {:,.0f}'.format('SLS + ' + configSLS.name, configSLS.total_dV(1)+4500, configSLS.total_dV(2)+4500, configSLS.total_dV(3)+4500))

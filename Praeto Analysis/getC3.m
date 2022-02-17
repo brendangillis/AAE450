@@ -26,5 +26,5 @@ function v_inf = getC3(propinfo)
 
 C3 = propinfo.c3; %get C3 values from prop code
 
-v_inf = sqrt(C3); % Velocity at infinite radius calculation (km/s)
+v_inf = sqrt(C3) + 30; % Velocity at infinite radius calculation (km/s)
 end

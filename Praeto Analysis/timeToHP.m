@@ -24,8 +24,8 @@ function tHP = timeToHP(candidateArchitecture, propinfo, distance)
         tHP = 1/(vSail/desire_dist);
     elseif(candidateArchitecture.Prop == "sail" && candidateArchitecture.Gravity == "jupiter")
         vSail = 14; %Estimation based on "Penn State GPL Paper"
-        tJ = 1/((vSail/4)/jupiter_dist);
-        arrivalV = Vinf + vSail/4;
+        tJ = 1/((vSail)/jupiter_dist);
+        arrivalV = Vinf + vSail;
         vAfter = gravityAssist(candidateArchitecture.Gravity, arrivalFPA, arrivalV);
         tAfter = 1/(vAfter/desire_dist);
         tHP = tJ + tAfter;
@@ -53,4 +53,3 @@ function tHP = timeToHP(candidateArchitecture, propinfo, distance)
 
      tHP = tHP/3.154e+7; %Time to Heliopause [years]
 end
-         

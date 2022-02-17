@@ -13,17 +13,17 @@ function tHP = timeToHP(candidateArchitecture, propinfo, distance)
        if(candidateArchitecture.Prop == "chem" && candidateArchitecture.Gravity == "none")
         tHP = 1/(Vinf/desire_dist);
     elseif(candidateArchitecture.Prop == "chem" && candidateArchitecture.Gravity == "jupiter")
-        vChem = 10;%Estimation based on Falcon second stage Upper stage
+        vChem = 3;%Estimation based R-4D
         tJ = 1/(Vinf/jupiter_dist);
         arrivalV = Vinf + vChem;
         vAfter = gravityAssist(candidateArchitecture.Gravity, arrivalFPA, arrivalV);
         tAfter = 1/(vAfter/desire_dist);
         tHP = tJ + tAfter;
     elseif(candidateArchitecture.Prop == "sail" && candidateArchitecture.Gravity == "none")
-        vSail = 70; %Estimation based on "Penn State GPL Paper"
+        vSail = 14; %Estimation based on "Penn State GPL Paper"
         tHP = 1/(vSail/desire_dist);
     elseif(candidateArchitecture.Prop == "sail" && candidateArchitecture.Gravity == "jupiter")
-        vSail = 70; %Estimation based on "Penn State GPL Paper"
+        vSail = 14; %Estimation based on "Penn State GPL Paper"
         tJ = 1/((vSail/4)/jupiter_dist);
         arrivalV = Vinf + vSail/4;
         vAfter = gravityAssist(candidateArchitecture.Gravity, arrivalFPA, arrivalV);

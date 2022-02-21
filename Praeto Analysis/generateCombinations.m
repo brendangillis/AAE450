@@ -1,6 +1,5 @@
 % AAE 450 Praeto Analysis
-% generateCombinations.m
-% Author: Josh O'Meara
+% Author: Josh O"Meara
 % Generates the combinations for the praeto analysis
 
 function combinations = generateCombinations()
@@ -15,7 +14,7 @@ function combinations = generateCombinations()
     
     num_combinations = length(Staging) * length(Prop) * length(Gravity) * length(Com) * length(Spin) * length(LV) * length(Power) * length(Payload);
     combinations(num_combinations, 1) = struct("Staging", [], "Prop", [], "Gravity", [],...
-                                               "Com", [], "LV", [], "Power", [], "Payload", []);
+                                               "Com", [], "LV", [], "Power", [], "Payload", [],"Spin",[]);
     num = 1;
     
     for s = (1:length(Staging))
@@ -27,7 +26,7 @@ function combinations = generateCombinations()
                             for pw = (1:length(Power))
                                 for pl = (1:length(Payload))
                                     arch = struct("Staging", Staging(s), "Prop", Prop(pr), "Gravity", Gravity(g),...
-                                                  "Com", Com(c), "LV", LV(lv), "Power", Power(pw), "Payload", Payload(pl));
+                                                  "Com", Com(c), "LV", LV(lv), "Power", Power(pw), "Payload", Payload(pl),"Spin",Spin(sp));
                                     combinations(num) = arch;
                                     num = num + 1;
                                 end

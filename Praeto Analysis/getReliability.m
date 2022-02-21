@@ -4,24 +4,24 @@
 % Assigns the reliability scores to each architecture
 
 function reliability = getReliability(arch)
-reliability = 0;
+reliability = 1;
 
 %STAGING
-if (arch.Stage == "none")
+if (arch.Staging == "none")
     reliability = reliability * 1;
-elseif (arch.Stage == "single")
+elseif (arch.Staging == "single")
     reliability = reliability * .99;
-elseif (arch.Stage == "mult")
+elseif (arch.Staging == "mult")
     reliability = reliability * .98;
 end
 
 % PROPULSION
 if (arch.Prop == "chem")
-    reliability = reliability * .99;
+    reliability = reliability * .995;
 elseif (arch.Prop == "sail")
-    reliability = reliability * .99;
+    reliability = reliability * .8;
 elseif (arch.Prop == "elec")
-    reliability = reliability * .998;
+    reliability = reliability * .99;
 elseif (arch.Prop == "nuc")
     reliability = reliability * .939;
 end
@@ -30,21 +30,21 @@ end
 if (arch.Gravity == "none")
     reliability = reliability * 1;
 elseif (arch.Gravity == "jupiter")
-    reliability = reliability * .98;
+    reliability = reliability * .97;
 end
 
 % COM
 if (arch.Com == "laser")
-    reliability = reliability * .99;
-elseif (arch.Com == "Ka")
-    reliability = reliability * .999;
+    reliability = reliability * .8;
 elseif (arch.Com == "X")
+    reliability = reliability * .999;
+elseif (arch.Com == "Ka")
     reliability = reliability * .996;
 end
 
 % SPIN
 if (arch.Spin == "no")
-    reliability = reliability * 0;
+    reliability = reliability * .995;
 elseif (arch.Spin == "yes")
     reliability = reliability * .99;
 elseif (arch.Spin == "both")
@@ -53,9 +53,9 @@ end
 
 % LV
 if (arch.LV == "star")
-    reliability = reliability * .92;
+    reliability = reliability * .7;
 elseif (arch.LV == "sls")
-    reliability = reliability * .9231;
+    reliability = reliability * .75;
 elseif (arch.LV == "div")
     reliability = reliability * .923;
 elseif (arch.LV == "falcon")
@@ -68,7 +68,7 @@ if (arch.Power == "solar")
 elseif (arch.Power == "nuc")
     reliability = reliability * .997;
 elseif (arch.Power == "both")
-    reliability = reliability * .999985;
+    reliability = reliability * 1;
 end
 
 % PAYLOAD

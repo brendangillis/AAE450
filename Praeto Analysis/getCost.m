@@ -7,35 +7,35 @@ function cost = getCost(arch)
 cost = 0;
 
 %STAGING
-if (arch.Stage == "none")
-    cost = cost + 20;
-elseif (arch.Stage == "single")
+if (arch.Staging == "none")
+    cost = cost - 7.5;
+elseif (arch.Staging == "single")
     cost = cost + 0;
-elseif (arch.Stage == "mult")
-    cost = cost - 40;
+elseif (arch.Staging == "mult")
+    cost = cost + 7.5;
 end
 
 % PROPULSION
 if (arch.Prop == "chem")
     cost = cost + 0;
 elseif (arch.Prop == "sail")
-    cost = cost - 145;
+   cost = cost - 6.69742095;
 elseif (arch.Prop == "elec")
-    cost = cost + 1.5;
+    cost = cost - 14;
 elseif (arch.Prop == "nuc")
-    cost = cost - 595;
+    cost = cost + 11.986;
 end
 
 % GRAVITY
 if (arch.Gravity == "none")
     cost = cost + 0;
 elseif (arch.Gravity == "jupiter")
-    cost = cost + 1.6;
+    cost = cost -.515;
 end
 
 % COM
 if (arch.Com == "laser")
-    cost = cost + .1;
+    cost = cost + 30;
 elseif (arch.Com == "Ka")
     cost = cost + 0;
 elseif (arch.Com == "X")
@@ -64,21 +64,24 @@ end
 
 % POWER
 if (arch.Power == "solar")
-    cost = cost + 1;
+%     cost = cost+ 1;
+      cost = cost + 0;
 elseif (arch.Power == "nuc")
-    cost = cost - 65;
+%     cost = cost - 65;
+      cost = cost - 235;
 elseif (arch.Power == "both")
-    cost = cost - 65.0175;
+%     cost = cost - 65.0175;
+     cost = cost + 140;
 end
 
 % PAYLOAD
 if (arch.Payload == "all")
     cost = cost + 0;
 elseif (arch.Payload == "partial")
-    cost = cost + 43.61;
+    cost = cost - 64.608;
 elseif (arch.Payload == "max")
-    cost = cost + 112.05;
+    cost = cost - 150.173;
 end
 
-cost = cost / 1000;
+cost = cost;
 end

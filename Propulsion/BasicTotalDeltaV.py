@@ -103,7 +103,9 @@ def main():
     configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 2], [rocketChoices.centaur, 1]]))
     configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 3], [rocketChoices.centaur, 1]]))
     configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 4], [rocketChoices.centaur, 1]]))
-    
+    configs.append(Configuration([[rocketChoices.starship, 1]]))
+
+
     print('\nROCKET CONFIGURATIONS:')
     print('V_leo + V_kick + V_earth - V_escape')
     print('  {:<36}  |  1 tons  |  2 tons  |  3 tons | Cost [$M] |'.format(' '))

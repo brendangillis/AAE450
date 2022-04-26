@@ -10,20 +10,22 @@ class RocketStage:
         self.mass = dry_mass + fuel_mass    # total mass [metric Tons]
         self.burn_time  = burn_time         # burn time [s]
         self.name       = name              # stage name
-        self.cost       = cost                 # cost [$ Million]
+        self.cost       = cost              # cost [$ Million]
+        self.dV         = 0                 # delta V [m/s]
         
     def stage_dV(self, num_stage, payload):
-        dV  = 9.81 * self.isp * np.log( (num_stage*self.mass + payload) / (num_stage*self.dry_mass + payload))
-        return dV
+        self.dV  = 9.81 * self.isp * np.log( (num_stage*self.mass + payload) / (num_stage*self.dry_mass + payload))
+        return self.dV
     
 class Configuration:
     def __init__(self, stages):
+        # Stages take the form [stage, number of stages]
         self.stages     = stages
         self.name       = [str(stage[1]) + ' ' +  stage[0].name for stage in self.stages]
         self.name       = ',  '.join(self.name)
         
     def total_dV(self, payload):
-        dV = 7800 + 30000 - 11200              # Earth to LEO from Launch Vehicle [m/s]
+        dV = 7800 + 30000 - 11200              # V_LEO + V_Earth - V_Escape [m/s]
         for i, stage in enumerate(self.stages):
             upper_stage_mass = sum(stage[0].mass * stage[1] for stage in self.stages[i+1:])
             dV += stage[0].stage_dV(stage[1], payload + upper_stage_mass)
@@ -86,35 +88,40 @@ class RocketChoices:
         return
 
 
-
-
 def main():
-    
     # Initialize rocket stages
     rocketChoices = RocketChoices()
     
     # Initialize rocket configuration
     configSLS   = Configuration([[rocketChoices.centaur, 1]])
-    configs     = [(Configuration([ [rocketChoices.starship, 1]]))]
-    configs.append((Configuration([ [rocketChoices.starship, 1], [rocketChoices.F9Upper, 1]])))
-    configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.centaur, 1]]))
-    configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.gem46, 2], [rocketChoices.centaur, 1]]))
-    configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.gem46, 3], [rocketChoices.centaur, 1]]))
-    configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 2], [rocketChoices.centaur, 1]]))
-    configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 3], [rocketChoices.centaur, 1]]))
-    configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 4], [rocketChoices.centaur, 1]]))
-    configs.append(Configuration([[rocketChoices.starship, 1]]))
+    configs     = [Configuration([ [rocketChoices.starship, 1], [rocketChoices.F9Upper, 1]])]
+    #configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.centaur, 1]]))
+    #configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.gem46, 2], [rocketChoices.centaur, 1]]))
+    #configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.gem46, 3], [rocketChoices.centaur, 1]]))
+    #configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 2], [rocketChoices.centaur, 1]]))
+    #configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 3], [rocketChoices.centaur, 1]]))
+    #configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 4], [rocketChoices.centaur, 1]]))
+    #configs.append(Configuration([[rocketChoices.starship, 1]]))
 
-
+    mass1 = 2.8 # [metric tons]
+    mass2 = 2.8+0.10 # [metric tons]
+    mass3 = 4.0 # [metric tons]
     print('\nROCKET CONFIGURATIONS:')
     print('V_leo + V_kick + V_earth - V_escape')
-    print('  {:<36}  |  1 tons  |  2 tons  |  3 tons | Cost [$M] |'.format(' '))
-    print('  {:<40} {:,.0f},    {:,.0f},    {:,.0f},    {:,.1f}'.format('SLS + ' + configSLS.name, configSLS.total_dV(1)+4500, configSLS.total_dV(2)+4500, configSLS.total_dV(3)+4500, configSLS.total_cost()))
+    print('  {:<36}  | {} tons | {} tons | {} tons | Cost [$M] |'.format(' ', mass1, mass2, mass3))
+
+    # Calculate SLS DV seperatly because it does not go to parking orbit
+    # Add 4,500 m/s to the SLS DV to account for extra compared to LEO
+    #print('  {:<40} {:,.0f},    {:,.0f},    {:,.0f},    {:,.1f}'.format('SLS + ' + configSLS.name, configSLS.total_dV(mass1)+4500, configSLS.total_dV(mass2)+4500, configSLS.total_dV(mass3)+4500, configSLS.total_cost()))
     
     for config in configs:
-        print('  {:<40} {:,.0f},    {:,.0f},    {:,.0f},    {:,.1f}'.format(config.name, config.total_dV(1), config.total_dV(2), config.total_dV(3), config.total_cost()))
+        print('  {:<40} {:,.3f},    {:,.3f},    {:,.3f},    {:,.1f}'.format(config.name, config.total_dV(mass1)/1000, config.total_dV(mass2)/1000, config.total_dV(mass3)/1000, config.total_cost()))
     
-        
+
+    for config in configs:
+        for stage in config.stages:
+            print("{}: {:,.3f}".format(stage[0].name, stage[0].dV/1000))
+
     return
 
 

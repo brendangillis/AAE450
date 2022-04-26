@@ -103,9 +103,9 @@ def main():
     #configs.append(Configuration([ [rocketChoices.starship, 1], [rocketChoices.castor, 4], [rocketChoices.centaur, 1]]))
     #configs.append(Configuration([[rocketChoices.starship, 1]]))
 
-    mass1 = 2.8 # [metric tons]
-    mass2 = 2.8+0.10 # [metric tons]
-    mass3 = 4.0 # [metric tons]
+    mass1 = 3.078 # [metric tons]
+    mass2 = 4.0 # [metric tons]
+    mass3 = 5.0 # [metric tons]
     print('\nROCKET CONFIGURATIONS:')
     print('V_leo + V_kick + V_earth - V_escape')
     print('  {:<36}  | {} tons | {} tons | {} tons | Cost [$M] |'.format(' ', mass1, mass2, mass3))
@@ -119,9 +119,12 @@ def main():
     
 
     for config in configs:
+        post_leo_dv = 0
+        config.total_dV(mass1)
         for stage in config.stages:
+            post_leo_dv += stage[0].dV
             print("{}: {:,.3f}".format(stage[0].name, stage[0].dV/1000))
-
+        print("Post-LEO DV: {:,.3f}".format(post_leo_dv/1000))
     return
 
 
